@@ -19,10 +19,6 @@ app.use(cors({
 
 const __dirname = path.resolve();
 
-app.get("/", (req, res) => {
-    res.send("home");
-});
-
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
