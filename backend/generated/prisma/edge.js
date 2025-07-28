@@ -35,12 +35,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.9.0
- * Query Engine version: 81e4af48011447c3cc503a190e86995b66d2a28e
+ * Prisma Client JS version: 6.10.1
+ * Query Engine version: 9b628578b3b7cae625e8c927178f15a170e74a9c
  */
 Prisma.prismaVersion = {
-  client: "6.9.0",
-  engine: "81e4af48011447c3cc503a190e86995b66d2a28e"
+  client: "6.10.1",
+  engine: "9b628578b3b7cae625e8c927178f15a170e74a9c"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -153,6 +153,14 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "windows"
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -164,8 +172,8 @@ const config = {
     "schemaEnvPath": "../../.env"
   },
   "relativePath": "../../prisma",
-  "clientVersion": "6.9.0",
-  "engineVersion": "81e4af48011447c3cc503a190e86995b66d2a28e",
+  "clientVersion": "6.10.1",
+  "engineVersion": "9b628578b3b7cae625e8c927178f15a170e74a9c",
   "datasourceNames": [
     "db"
   ],
@@ -179,8 +187,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id               Int       @id @default(autoincrement())\n  email            String    @unique\n  fullName         String\n  password         String\n  profilePic       String    @default(\"\")\n  createdAt        DateTime  @default(now())\n  updatedAt        DateTime  @updatedAt\n  sentMessages     Message[] @relation(\"SentMessages\")\n  receivedMessages Message[] @relation(\"ReceivedMessages\")\n}\n\nmodel Message {\n  id         Int      @id @default(autoincrement())\n  sender     User     @relation(\"SentMessages\", fields: [senderId], references: [id])\n  senderId   Int\n  receiver   User     @relation(\"ReceivedMessages\", fields: [receiverId], references: [id])\n  receiverId Int\n  text       String?\n  image      String?\n  createdAt  DateTime @default(now())\n}\n",
-  "inlineSchemaHash": "ba6e97b87f39d9cf80d4db9d82da6f1e8b11b0a9bc36736cb41fc308c780906a",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../generated/prisma\"\n  binaryTargets = [\"native\", \"windows\", \"debian-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id               Int       @id @default(autoincrement())\n  email            String    @unique\n  fullName         String\n  password         String\n  profilePic       String    @default(\"\")\n  createdAt        DateTime  @default(now())\n  updatedAt        DateTime  @updatedAt\n  sentMessages     Message[] @relation(\"SentMessages\")\n  receivedMessages Message[] @relation(\"ReceivedMessages\")\n}\n\nmodel Message {\n  id         Int      @id @default(autoincrement())\n  sender     User     @relation(\"SentMessages\", fields: [senderId], references: [id])\n  senderId   Int\n  receiver   User     @relation(\"ReceivedMessages\", fields: [receiverId], references: [id])\n  receiverId Int\n  text       String?\n  image      String?\n  createdAt  DateTime @default(now())\n}\n",
+  "inlineSchemaHash": "a496b886fb1a2e4cdb868f288fdc7a0a471bcafc4e3d88280f4997952db1ddca",
   "copyEngine": true
 }
 config.dirname = '/'
