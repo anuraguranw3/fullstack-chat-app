@@ -1,15 +1,23 @@
 import { Camera, Mail, User } from "lucide-react";
 import { useAuthStore } from "../store/useAuthStore";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 
 const ProfilePage = () => {
   const { authUser, isUpdatingProfile, updateProfile } = useAuthStore();
   const [selectedImg, setSelectedImg] = useState(null);
 
+  const MAX_SIZE = 100 * 1024;
+
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
+
+    if (file.size > MAX_SIZE) {
+      toast.error("Image too large. Maximum size allowed is 100 KB.");
+      return; // stop here, don’t process large files
+    }
 
     const reader = new FileReader();
 
