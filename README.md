@@ -6,6 +6,8 @@
 
 A real-time full-stack chat application built with the **PERN stack**, featuring user authentication, live messaging, online status, theming, and image sharing.
 
+🔗 **Live Demo:** [https://fullstack-chat-app-jkz4.onrender.com](https://fullstack-chat-app-jkz4.onrender.com)
+
 ---
 
 ## 🛠 Tech Stack
